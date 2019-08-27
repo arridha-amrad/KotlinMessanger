@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C9004D"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
     <EditText
         android:id="@+id/email_editText_register"
@@ -98,5 +98,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/select_photo_imageview_register"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:civ_border_color="#FF000000"
+        app:layout_constraintBottom_toBottomOf="@+id/select_photo_button_register"
+        app:layout_constraintEnd_toEndOf="@+id/select_photo_button_register"
+        app:layout_constraintStart_toStartOf="@+id/select_photo_button_register"
+        app:layout_constraintTop_toTopOf="@+id/select_photo_button_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

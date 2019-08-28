@@ -1,9 +1,11 @@
-package com.example.kotlinmessanger
+package com.example.kotlinmessanger.registerLogin
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlinmessanger.R
+import com.example.kotlinmessanger.messages.LatestMessagesActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 

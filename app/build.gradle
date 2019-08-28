@@ -4,6 +4,12 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+/* to overcome missing object in parcel
+ specifically, I use it for models class Users */
+androidExtensions {
+    experimental = true
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -47,7 +53,6 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
 
 
 }

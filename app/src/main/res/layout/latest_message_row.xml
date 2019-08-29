@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/linearLayout2"
+  android:id="@+id/latestmessage_container"
   android:layout_width="match_parent"
   android:layout_height="120dp"
   android:orientation="vertical">
 
-  <ImageView
+  <de.hdodenhof.circleimageview.CircleImageView
     android:id="@+id/imageView_latestmessage"
     android:layout_width="64dp"
     android:layout_height="64dp"
@@ -25,13 +25,13 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:text="Username"
-    app:layout_constraintBottom_toTopOf="@+id/textView_latestmessage_latest_message"
+    app:layout_constraintBottom_toTopOf="@+id/latestmessage_text"
     app:layout_constraintStart_toEndOf="@+id/imageView_latestmessage"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_chainStyle="packed" />
 
   <TextView
-    android:id="@+id/textView_latestmessage_latest_message"
+    android:id="@+id/latestmessage_text"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"

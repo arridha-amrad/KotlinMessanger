@@ -67,10 +67,10 @@ class ChatLogActivity : AppCompatActivity() {
             // elvis operator avoiding error mismatch
             adapter.add(ChatFromItem(chatMessage.text, currentUser))
           } else {
-
             adapter.add(ChatToItem(chatMessage.text, toUser!!))
           }
         }
+        recyclerview_chatlog.scrollToPosition(adapter.itemCount-1)
       }
 
       override fun onChildRemoved(p0: DataSnapshot) {

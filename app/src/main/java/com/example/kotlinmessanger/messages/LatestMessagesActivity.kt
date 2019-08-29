@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.kotlinmessanger.R
 import com.example.kotlinmessanger.models.ChatMessage
 import com.example.kotlinmessanger.registerLogin.RegisterActivity
@@ -13,10 +14,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.example.kotlinmessanger.models.User
 import com.example.kotlinmessanger.registerLogin.LoginActivity
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_latest_messages.*
+import com.example.kotlinmessanger.View.LatestMessageRow
 import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 
@@ -31,7 +34,19 @@ class LatestMessagesActivity : AppCompatActivity() {
     setContentView(R.layout.activity_latest_messages)
 
     recyclerview_latest_message.adapter = adapter
+    recyclerview_latest_message.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+    // set item click listener on your adapter
+    adapter.setOnItemClickListener{
+      item, view ->
+      Log.d("LatestMessage", "123")
+      val intent = Intent(this, ChatLogActivity::class.java)
+
+      // to fix chat partner user
+      val row = item as LatestMessageRow
+      intent.putExtra(NewMessageActivity.USER_KEY, row.chatPartnerUser)
+      startActivity(intent)
+    }
 
 //    setupDummyRows()
     listenForLatestMessage()
@@ -42,15 +57,6 @@ class LatestMessagesActivity : AppCompatActivity() {
     verifyUserLogin()
   }
 
-  class LatestMessageRow(val chatMessage: ChatMessage): Item<ViewHolder>() {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-      viewHolder.itemView.textView_latestmessage_latest_message.text = chatMessage.text
-    }
-
-    override fun getLayout(): Int {
-      return R.layout.latest_message_row
-    }
-  }
 
   val latestMessageMap = HashMap<String, ChatMessage>()
 

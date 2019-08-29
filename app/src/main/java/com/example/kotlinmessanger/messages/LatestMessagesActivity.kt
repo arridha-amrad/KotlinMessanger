@@ -10,6 +10,7 @@ import com.example.kotlinmessanger.R
 import com.example.kotlinmessanger.registerLogin.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.example.kotlinmessanger.models.User
+import com.example.kotlinmessanger.registerLogin.LoginActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -66,7 +67,8 @@ class LatestMessagesActivity : AppCompatActivity() {
         startActivity(intent)
       }
       R.id.menu_sign_out -> {
-        val intent = Intent(this, RegisterActivity::class.java)
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
       }

@@ -3,6 +3,7 @@ package com.example.kotlinmessanger.registerLogin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinmessanger.R
 import com.example.kotlinmessanger.messages.LatestMessagesActivity
@@ -20,12 +21,27 @@ class LoginActivity : AppCompatActivity() {
             Log.d("Login", "Email : $email")
             Log.d("Login", "Password: $password")
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
 
-            val intent = Intent(this, LatestMessagesActivity::class.java)
-            // to clear previous activity and start new activity
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("LoginActivity", "signInWithEmail:success")
+                        val intent = Intent(this@LoginActivity, LatestMessagesActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+
+
         }
 
         backToRegister_textView.setOnClickListener{
